@@ -12,6 +12,28 @@ chmod +x user.sh
 sudo ./user.sh
 ```
 
+## Download With curl
+
+If you do not want to clone the repo, download and run directly:
+
+Latest from `main`:
+
+```bash
+curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/main/server-setups/user.sh -o /tmp/user.sh
+chmod +x /tmp/user.sh
+sudo /tmp/user.sh
+```
+
+Pinned commit (reproducible):
+
+```bash
+curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/597e48b37018d69219f3204a47f3f386930d6a48/server-setups/user.sh -o /tmp/user.sh
+chmod +x /tmp/user.sh
+sudo /tmp/user.sh
+```
+
+Use `main` for newest updates and pinned commit URLs for stable/repeatable runs.
+
 After the script prompts for testing, open a second terminal and verify SSH login plus sudo before applying root hardening.
 
 ---

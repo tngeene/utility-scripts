@@ -24,6 +24,40 @@ sudo ./user.sh
 sudo ./packages.sh
 ```
 
+## Download With curl
+
+Download directly from GitHub into `/tmp` and run:
+
+Latest from `main`:
+
+```bash
+curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/main/server-setups/user.sh -o /tmp/user.sh
+chmod +x /tmp/user.sh
+sudo /tmp/user.sh
+```
+
+```bash
+curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/main/server-setups/packages.sh -o /tmp/packages.sh
+chmod +x /tmp/packages.sh
+sudo /tmp/packages.sh
+```
+
+Pinned commit (reproducible):
+
+```bash
+curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/597e48b37018d69219f3204a47f3f386930d6a48/server-setups/user.sh -o /tmp/user.sh
+chmod +x /tmp/user.sh
+sudo /tmp/user.sh
+```
+
+```bash
+curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/597e48b37018d69219f3204a47f3f386930d6a48/server-setups/packages.sh -o /tmp/packages.sh
+chmod +x /tmp/packages.sh
+sudo /tmp/packages.sh
+```
+
+Use `main` for newest updates and pinned commit URLs for stable/repeatable runs.
+
 ## Safety Notes
 
 - Keep your current SSH session open until login tests pass.
