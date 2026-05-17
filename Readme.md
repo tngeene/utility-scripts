@@ -36,11 +36,17 @@ chmod +x /tmp/user.sh
 sudo /tmp/user.sh
 ```
 
+<img width="641" height="599" alt="Screenshot 2026-05-17 at 21 48 03" src="https://github.com/user-attachments/assets/2eed70f9-4ce4-48e9-87bf-8e6b8faed379" />
+
+
 ```bash
 curl -L https://raw.githubusercontent.com/tngeene/utility-scripts/main/server-setups/packages.sh -o /tmp/packages.sh
 chmod +x /tmp/packages.sh
 sudo /tmp/packages.sh
 ```
+
+<img width="855" height="768" alt="Screenshot 2026-05-17 at 22 25 05" src="https://github.com/user-attachments/assets/e1e16bf1-3715-4040-a706-75eef0279492" />
+
 
 Pinned commit (reproducible):
 
