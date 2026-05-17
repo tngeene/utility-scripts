@@ -1,0 +1,64 @@
+name: Bug report
+description: Report a script bug, regression, or unsafe behavior
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include distro, version, and where this ran (VPS, VM, local).
+      placeholder: Ubuntu 22.04 on VPS
+    validations:
+      required: true
+
+  - type: input
+    id: script
+    attributes:
+      label: Script
+      description: Which script was run?
+      placeholder: server-setups/user.sh
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output or logs
+      description: Redact secrets before sharing.
+
+  - type: checkboxes
+    id: risk
+    attributes:
+      label: Safety impact
+      options:
+        - label: This could lock users out of SSH
+        - label: This could remove/stop critical services
+        - label: This could modify firewall/network access

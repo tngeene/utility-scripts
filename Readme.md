@@ -30,3 +30,10 @@ sudo ./packages.sh
 - Do not enable UFW until SSH access is explicitly allowed.
 - Treat docker-group membership as root-equivalent access.
 - If anything goes wrong, use your provider console/recovery mode.
+
+## Contributing
+
+- See `CONTRIBUTING.md` for contribution expectations.
+- Pull requests use `.github/PULL_REQUEST_TEMPLATE.md`.
+- Issues use `.github/ISSUE_TEMPLATE/` forms.
+- Security issues should be reported privately via GitHub Security Advisories.
