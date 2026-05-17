@@ -480,15 +480,32 @@ if [ "$INSTALL_DOCKER" = true ]; then
 
     echo
     if ask_yes_no "Add a user to the docker group?"; then
-        while true; do
-            read -r -p "Enter username to add to docker group: " DOCKER_USER
+        DOCKER_USER=""
+        CURRENT_USER=""
 
-            if id "$DOCKER_USER" >/dev/null 2>&1; then
-                break
+        if [ -n "${SUDO_USER:-}" ] && [ "${SUDO_USER}" != "root" ] && id "${SUDO_USER}" >/dev/null 2>&1; then
+            CURRENT_USER="${SUDO_USER}"
+        fi
+
+        if [ -n "$CURRENT_USER" ]; then
+            if ask_yes_no "Add current user '${CURRENT_USER}' to docker group?"; then
+                DOCKER_USER="$CURRENT_USER"
             fi
+        else
+            warn "Could not detect a non-root invoking user automatically."
+        fi
 
-            echo "User '${DOCKER_USER}' does not exist. Try again."
-        done
+        if [ -z "$DOCKER_USER" ]; then
+            while true; do
+                read -r -p "Enter username to add to docker group: " DOCKER_USER
+
+                if id "$DOCKER_USER" >/dev/null 2>&1; then
+                    break
+                fi
+
+                echo "User '${DOCKER_USER}' does not exist. Try again."
+            done
+        fi
 
         info "Adding '${DOCKER_USER}' to docker group."
         usermod -aG docker "$DOCKER_USER"

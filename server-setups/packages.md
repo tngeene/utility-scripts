@@ -474,12 +474,20 @@ ss -tulpen
 
 The script can add a user to the `docker` group.
 
+When run with `sudo`, the script first offers to add the current invoking user automatically.
+
 This allows the user to run Docker commands without `sudo`.
 
 Example:
 
 ```bash
 usermod -aG docker username
+```
+
+Current shell user example:
+
+```bash
+usermod -aG docker "${USER}"
 ```
 
 However, membership in the `docker` group is effectively **root-equivalent**.
