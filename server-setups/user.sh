@@ -63,10 +63,10 @@ ask_yes_no() {
     while true; do
         read -r -p "${prompt} [y/n]: " answer
         case "$answer" in
-            y|Y|yes|YES|Yes)
+            y | Y | yes | YES | Yes)
                 return 0
                 ;;
-            n|N|no|NO|No)
+            n | N | no | NO | No)
                 return 1
                 ;;
             *)
@@ -89,7 +89,7 @@ set_or_append_sshd_config() {
     if grep -qE "^[#[:space:]]*${directive}[[:space:]]+" "$target_file"; then
         sed -i "s|^[#[:space:]]*${directive}[[:space:]].*|${directive} ${value}|" "$target_file"
     else
-        echo "${directive} ${value}" >> "$target_file"
+        echo "${directive} ${value}" >>"$target_file"
     fi
 }
 
@@ -108,8 +108,8 @@ command -v sshd >/dev/null 2>&1 || error "sshd command not found."
 
 SSH_CONFIG_TARGET="/etc/ssh/sshd_config"
 
-if grep -qE '^[[:space:]]*Include[[:space:]]+/etc/ssh/sshd_config\.d/\*\.conf' /etc/ssh/sshd_config \
-    && [ -d /etc/ssh/sshd_config.d ]; then
+if grep -qE '^[[:space:]]*Include[[:space:]]+/etc/ssh/sshd_config\.d/\*\.conf' /etc/ssh/sshd_config &&
+    [ -d /etc/ssh/sshd_config.d ]; then
     SSH_CONFIG_TARGET="/etc/ssh/sshd_config.d/99-user-hardening.conf"
     if [ ! -f "$SSH_CONFIG_TARGET" ]; then
         info "Detected include-based SSH config. Creating ${SSH_CONFIG_TARGET}."
@@ -271,7 +271,7 @@ if [ "$SETUP_SSH_KEYS" = true ]; then
     if [ -f /root/.ssh/authorized_keys ]; then
         if ask_yes_no "Copy root's existing authorized_keys to '${USERNAME}'?"; then
             info "Copying root's authorized_keys."
-            cat /root/.ssh/authorized_keys >> "${home_directory}/.ssh/authorized_keys"
+            cat /root/.ssh/authorized_keys >>"${home_directory}/.ssh/authorized_keys"
         fi
     else
         warn "/root/.ssh/authorized_keys does not exist, so there are no root keys to copy."
@@ -294,12 +294,12 @@ if [ "$SETUP_SSH_KEYS" = true ]; then
         fi
 
         if [[ "$pub_key" =~ ^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp256|ecdsa-sha2-nistp384|ecdsa-sha2-nistp521)[[:space:]]+ ]]; then
-            echo "$pub_key" >> "${home_directory}/.ssh/authorized_keys"
+            echo "$pub_key" >>"${home_directory}/.ssh/authorized_keys"
             info "Key added."
         else
             warn "That does not look like a standard SSH public key."
             if ask_yes_no "Add it anyway?"; then
-                echo "$pub_key" >> "${home_directory}/.ssh/authorized_keys"
+                echo "$pub_key" >>"${home_directory}/.ssh/authorized_keys"
                 info "Key added."
             else
                 warn "Key skipped."

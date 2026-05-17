@@ -64,6 +64,16 @@ sudo /tmp/packages.sh
 
 Use `main` for newest updates and pinned commit URLs for stable/repeatable runs.
 
+## Install Pre-commit Hooks
+
+Install and enable hooks locally before committing:
+
+```bash
+python3 -m pip install --user pre-commit
+pre-commit install
+pre-commit run --all-files
+```
+
 ## Safety Notes
 
 - Keep your current SSH session open until login tests pass.

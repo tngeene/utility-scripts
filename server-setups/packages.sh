@@ -51,10 +51,10 @@ ask_yes_no() {
     while true; do
         read -r -p "${prompt} [y/n]: " answer
         case "$answer" in
-            y|Y|yes|YES|Yes)
+            y | Y | yes | YES | Yes)
                 return 0
                 ;;
-            n|N|no|NO|No)
+            n | N | no | NO | No)
                 return 1
                 ;;
             *)
@@ -140,7 +140,7 @@ OS_ID="${ID:-unknown}"
 OS_CODENAME="${VERSION_CODENAME:-}"
 
 case "$OS_ID" in
-    ubuntu|debian)
+    ubuntu | debian)
         info "Detected supported OS: ${PRETTY_NAME:-$OS_ID}"
         ;;
     *)
@@ -453,8 +453,8 @@ if [ "$INSTALL_DOCKER" = true ]; then
 
     info "Adding Docker apt repository."
     echo \
-      "deb [arch=${ARCHITECTURE} signed-by=${DOCKER_KEYRING}] https://download.docker.com/linux/${OS_ID} ${OS_CODENAME} stable" \
-      > "$DOCKER_SOURCE_FILE"
+        "deb [arch=${ARCHITECTURE} signed-by=${DOCKER_KEYRING}] https://download.docker.com/linux/${OS_ID} ${OS_CODENAME} stable" \
+        >"$DOCKER_SOURCE_FILE"
 
     info "Updating apt package lists after adding Docker repository."
     apt-get update
